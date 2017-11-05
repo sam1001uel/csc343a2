@@ -4,6 +4,11 @@ import java.util.List;
 // If you are looking for Java data structures, these are highly useful.
 // Remember that an important part of your mark is for doing as much in SQL (not Java) as you can.
 // Solutions that use only or mostly Java will not receive a high mark.
+//import java.util.ArrayList;
+//import java.util.Map;
+//import java.util.HashMap;
+//import java.util.Set;
+//import java.util.HashSet;
 public class Assignment2 extends JDBCSubmission {
 
     public Assignment2() throws ClassNotFoundException {
@@ -30,7 +35,7 @@ public class Assignment2 extends JDBCSubmission {
     }
 
     @Override
-    public List<String> findSimilarPoliticians(int politicianId, float threshold) {
+    public List<Integer> findSimilarPoliticians(Integer politicianName, Float threshold) {
         // Implement this method!
         return null;
     }
