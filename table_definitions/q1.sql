@@ -76,17 +76,17 @@ insert into q1 (year, countryname, partyname, percentage)
 update q1
 set voterange=
 case when percentage>0 and percentage<=5
-then '(0,5]'
+then '(0-5]'
 when percentage>5 and percentage<=10
-then '(5,10]'
+then '(5-10]'
 when percentage>10 and percentage<=20
-then '(10,20]'
+then '(10-20]'
 when percentage>20 and percentage<=30
-then '(20,30]'
+then '(20-30]'
 when percentage>30 and percentage<=40
-then '(30,40]'
+then '(30-40]'
 when percentage>40 
-then '(40,]'
+then '(40-100]'
 end;
 
 alter table q1 drop column percentage;
