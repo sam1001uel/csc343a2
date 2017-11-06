@@ -15,6 +15,13 @@ partyName VARCHAR(100)
 -- You may find it convenient to do this for each of the views
 -- that define your intermediate steps.  (But give them better names!)
 DROP VIEW IF EXISTS intermediate_step CASCADE;
+DROP VIEW IF EXISTS all_elections CASCADE;
+DROP VIEW IF EXISTS all_votes CASCADE;
+DROP VIEW IF EXISTS all_elections_votes CASCADE;
+DROP VIEW IF EXISTS vote_percentage CASCADE;
+DROP VIEW IF EXISTS duplicate CASCADE;
+DROP VIEW IF EXISTS vote_percentage_duplicate CASCADE;
+DROP VIEW IF EXISTS vote_percentage_noduplicate CASCADE;
 
 -- Define views for your intermediate steps here.
 
