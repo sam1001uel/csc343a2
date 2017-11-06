@@ -39,8 +39,8 @@ where election_id in (select election_id from all_elections);
 
 -- Join all_elections and all_votes together
 create view all_elections_votes as
-csc343h-leetsz9-> select * 
-csc343h-leetsz9-> from all_elections natural join all_votes;
+select * 
+from all_elections natural join all_votes;
 
 -- Create view with country name and vote percentage
 create view vote_percentage as
@@ -49,9 +49,9 @@ from all_elections_votes join country on country_id=country.id;
 
 -- Create view with countries that have more than one election in the same year
 create view duplicate as 
-csc343h-leetsz9-> select v1.election_id, v1.year, v1.countryname, v1.partyname, v1.percentage
-csc343h-leetsz9-> from vote_percentage v1, vote_percentage v2
-csc343h-leetsz9-> where v1.year=v2.year and v1.countryname=v2.countryname and v1.partyname=v2.partyname and v1.election_id<>v2.election_id;
+select v1.election_id, v1.year, v1.countryname, v1.partyname, v1.percentage
+from vote_percentage v1, vote_percentage v2
+where v1.year=v2.year and v1.countryname=v2.countryname and v1.partyname=v2.partyname and v1.election_id<>v2.election_id;
 
 -- Create view that store the avg vote of each party in duplicate elections
 create view vote_percentage_duplicate as
