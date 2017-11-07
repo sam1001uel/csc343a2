@@ -19,6 +19,7 @@ mostRecentlyWonElectionYear INT
 -- that define your intermediate steps.  (But give them better names!)
 DROP VIEW IF EXISTS intermediate_step CASCADE;
 DROP VIEW IF EXISTS max_vote CASCADE;
+DROP VIEW IF EXISTS num_of_parties CASCADE;
 
 -- Define views for your intermediate steps here.
 create view max_vote as
