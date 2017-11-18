@@ -36,7 +36,15 @@ public class Assignment2 extends JDBCSubmission {
     @Override
     public boolean disconnectDB() {
         // Implement this method!
-        return false;
+    		try {
+    			conn.close();
+    			System.out.println("disconnected!");
+    			return true;
+    		}
+    		catch (SQLException se) {
+    			System.err.println("SQL Exception." + "<Message>: " + se.getMessage());
+    			return false;
+        }      
     }
 
     @Override
@@ -57,7 +65,11 @@ public class Assignment2 extends JDBCSubmission {
         		String url = "jdbc:postgresql://localhost:5432/csc343h-leetsz9";
         		
         		boolean test_connected = test.connectDB(url, "leetsz9", "");
-        		System.out.println(test_connected);
+        		boolean test_disconnected = test.disconnectDB();
+        		
+        		//test Strings
+        		System.out.println (test_connected);
+        		System.out.println(test_disconnected);
         		
     		}
     		catch (ClassNotFoundException e) {
