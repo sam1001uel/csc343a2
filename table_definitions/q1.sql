@@ -57,7 +57,6 @@ create view vote_percentage_noduplicate as
 select year, countryname, partyname, percentage from vote_percentage
 except all (select year, countryname, partyname, percentage from duplicate);
 
-
 -- the answer to the query 
 alter table q1 add column percentage decimal;
 
