@@ -11,7 +11,7 @@ import java.util.List;
 //import java.util.HashSet;
 public class Assignment2 extends JDBCSubmission {
 	
-	//Connection conn;
+	Connection conn;
 	
     public Assignment2() throws ClassNotFoundException {
     		try {
