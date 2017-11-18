@@ -32,7 +32,7 @@ create view cabinets_pmparty_enddate as
 select all_cabinets_pmparty.country_id, cabinetId, all_cabinets_pmparty.start_date as startDate, cabinet.start_date as endDate, pmParty_id
 from cabinet right outer join all_cabinets_pmparty on cabinet.previous_cabinet_id=cabinetId;
 
--- Answer to the query
+-- Answer to the query. Replace country_id by country name and pmParty_id by pmParty name
 create view answer as 
 select country.name as countryName, cabinetId, startDate, endDate, party.name as pmParty
 from cabinets_pmparty_enddate left outer join country on country_id=country.id
