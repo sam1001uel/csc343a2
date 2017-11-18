@@ -8,8 +8,8 @@ drop table if exists q7 cascade;
 DROP TABLE IF EXISTS q7 CASCADE;
 CREATE TABLE q7(
         countryId INT, 
-        alliedParty1 INT, 
-        alliedParty2 INT
+        alliedPartyId1 INT, 
+        alliedPartyId2 INT
 );
 
 -- You may find it convenient to do this for each of the views
