@@ -14,12 +14,9 @@ public class Assignment2 extends JDBCSubmission {
 	Connection conn;
 	
     public Assignment2() throws ClassNotFoundException {
-    		try {
-    			Class.forName("org.postgresql.Driver");
-    		}
-        catch (ClassNotFoundException e) {
-        		System.out.println("Failed to find the JDBC driver");
-        }
+    	
+    		Class.forName("org.postgresql.Driver");
+           
     }
 
     @Override
@@ -55,11 +52,18 @@ public class Assignment2 extends JDBCSubmission {
     }
 
     public static void main(String[] args) {
-    		Assignment2 test = new Assignment2();
-    		String url = "jdbc:postgresql://localhost:5432/csc343h-leetsz9";
+    		try {
+    			Assignment2 test = new Assignment2();
+        		String url = "jdbc:postgresql://localhost:5432/csc343h-leetsz9";
+        		
+        		boolean test_connected = test.connectDB(url, "leetsz9", "");
+        		System.out.println(test_connected);
+        		
+    		}
+    		catch (ClassNotFoundException e) {
+        		System.out.println("Failed to find the JDBC driver");
+        }
     		
-    		boolean test_connected = test.connectDB(url, "leetsz9", "");
-    		System.out.println(test_connected);
     }
 
 }
