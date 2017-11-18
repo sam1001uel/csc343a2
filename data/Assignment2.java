@@ -10,16 +10,30 @@ import java.util.List;
 //import java.util.Set;
 //import java.util.HashSet;
 public class Assignment2 extends JDBCSubmission {
-
+	
+	//Connection conn;
+	
     public Assignment2() throws ClassNotFoundException {
-
-        Class.forName("org.postgresql.Driver");
+    		try {
+    			Class.forName("org.postgresql.Driver");
+    		}
+        catch (ClassNotFoundException e) {
+        		System.out.println("Failed to find the JDBC driver");
+        }
     }
 
     @Override
     public boolean connectDB(String url, String username, String password) {
         // Implement this method!
-        return false;
+    		try {
+            conn = DriverManager.getConnection(url, username, password);
+            System.out.println("connected!");
+            return true;
+    		}
+    		catch (SQLException se) {
+    			System.err.println("SQL Exception." + "<Message>: " + se.getMessage());
+    			return false;
+        }
     }
 
     @Override
@@ -41,8 +55,11 @@ public class Assignment2 extends JDBCSubmission {
     }
 
     public static void main(String[] args) {
-        // You can put testing code in here. It will not affect our autotester.
-        System.out.println("Hello");
+    		Assignment2 test = new Assignment2();
+    		String url = "jdbc:postgresql://localhost:5432/csc343h-leetsz9";
+    		
+    		boolean test_connected = test.connectDB(url, "leetsz9", "");
+    		System.out.println(test_connected);
     }
 
 }
