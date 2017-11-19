@@ -134,7 +134,7 @@ public class Assignment2 extends JDBCSubmission {
         		
         		//Get comment and description of all politicians except for the given politician
         		String allPoliticians_query = 
-        				"select description, comment "+
+        				"select id, description, comment "+
         				"from politician_president "+
         				"where id <> ?";
         		PreparedStatement allPoliticians_ps = conn.prepareStatement(allPoliticians_query);    
@@ -143,11 +143,18 @@ public class Assignment2 extends JDBCSubmission {
         		//Execute
         		ResultSet allPoliticians_rs = allPoliticians_ps.executeQuery();
         		while (allPoliticians_rs.next()) {
+        			Int politicianId = allPoliticians_rs.getInt("id");
         			String P_description = allPoliticians_rs.getString("description");
             		String P_comment = allPoliticians_rs.getString("comment");
             		String P_string = P_description + " " + P_comment;
             		
-            		System.out.println(P_string);
+            		float score = (float)similarity(givenP_string, P_string);
+            		System.out.println("The similarity score is: "+score);
+            		
+            		if (score > threshold) {
+            			result.add(politicianId);
+            		}
+            		
         		}
         		
         		
