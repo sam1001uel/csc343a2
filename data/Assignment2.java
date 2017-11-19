@@ -133,11 +133,11 @@ public class Assignment2 extends JDBCSubmission {
         		int elections_length = 0;
         		int cabinets_length = 0;
         		
-        		for (i in test_q3.elections) {
+        		for (int i in test_q3.elections) {
         			elections_length++;
         		}
         		
-        		for (i in test_q3.cabinets) {
+        		for (int i in test_q3.cabinets) {
         			cabinets_length++;
         		}
         		System.out.println(elections_length);
