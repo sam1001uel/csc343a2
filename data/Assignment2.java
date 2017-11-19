@@ -151,7 +151,7 @@ public class Assignment2 extends JDBCSubmission {
             		float score = (float)similarity(givenP_string, P_string);
             		System.out.println("The similarity score is: "+score);
             		
-            		if (score > threshold) {
+            		if (score >= threshold) {
             			result.add(pId);
             		}
             		
