@@ -68,12 +68,9 @@ public class Assignment2 extends JDBCSubmission {
         		
         		//Result
         		ResultSet getcountryId_rs = getcountryId_ps.executeQuery();
-        		while (getcountryId_rs.next()) {
-        			int countryId = getcountryId_rs.getInt("id"); 
-    			
-        			System.out.println(countryId);
-        		}
-        		
+        		int countryId = getcountryId_rs.getInt("id");     			
+        		System.out.println(countryId);	
+        	        		
             return result;
     		}
     		catch (SQLException se) {
@@ -99,8 +96,7 @@ public class Assignment2 extends JDBCSubmission {
         		ElectionCabinetResult test_q3_wrongname = test.electionSequence("Franc");
         		
         		boolean test_disconnected = test.disconnectDB();
-        		System.out.println(test_q3.elections);
-        		System.out.println(test_q3.cabinets);
+        		System.out.println(test_q3);
         		System.out.println(test_q3_wrongname);
         		
         		//test Strings
