@@ -57,6 +57,10 @@ public class Assignment2 extends JDBCSubmission {
         // Implement this method!
     		ElectionCabinetResult result = new ElectionCabinetResult(new ArrayList<Integer>(), new ArrayList<Integer>());    		
     		try {
+    			//Drop existing views
+    			PreparedStatement dropView_ps = conn.prepareStatement("drop view if exists all_elections cascade");
+    			dropView_ps.execute();
+    			
     			//get countryId according to countryName    			
     			//Prepare Statement
         		String getcountryId_query = "select id from country where name = ?"; 
@@ -123,6 +127,8 @@ public class Assignment2 extends JDBCSubmission {
         		
         		boolean test_disconnected = test.disconnectDB();
         		System.out.println(test_q3);
+        		System.out.println(test_q3.elections.length());
+        		System.out.println(test_q3.cabinets.length());
         		System.out.println(test_q3_wrongname);
         		
         		//test Strings
