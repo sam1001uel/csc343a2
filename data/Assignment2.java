@@ -24,7 +24,7 @@ public class Assignment2 extends JDBCSubmission {
         // Implement this method!
     		try {
             conn = DriverManager.getConnection(url, username, password);
-            System.out.println("connected!");
+            System.out.println("connected to database!");
             
             String search_path = "set search_path to parlgov";
     			PreparedStatement ps = conn.prepareStatement(search_path);
@@ -43,7 +43,7 @@ public class Assignment2 extends JDBCSubmission {
         // Implement this method!
     		try {
     			conn.close();
-    			System.out.println("disconnected!");
+    			System.out.println("disconnected from database!");
     			return true;
     		}
     		catch (SQLException se) {
@@ -160,6 +160,7 @@ public class Assignment2 extends JDBCSubmission {
     }
             
     public static void main(String[] args) {
+    		// You can put testing code in here. It will not affect our autotester.
     		try {
     			Assignment2 test = new Assignment2();
         		String url = "jdbc:postgresql://localhost:5432/csc343h-leetsz9";
