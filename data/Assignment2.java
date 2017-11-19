@@ -118,6 +118,7 @@ public class Assignment2 extends JDBCSubmission {
     		List<Integer> result = new ArrayList<Integer>();
     		try {
     			//Get the comment and description of the given politicianId
+    			//Prepare Statement
         		String givenPolitician_query = "select description, comment from politician_president where id = ?";
         		PreparedStatement givenPolitician_ps = conn.prepareStatement(givenPolitician_query);    
         		givenPolitician_ps.setInt(1, politicianId);
@@ -130,6 +131,25 @@ public class Assignment2 extends JDBCSubmission {
         		String givenP_string = givenP_description + " " + givenP_comment;
         		
         		System.out.println(givenP_string);
+        		
+        		//Get comment and description of all politicians except for the given politician
+        		String allPoliticians_query = 
+        				"select description, comment "+
+        				"from politician_president "+
+        				"where id <> ?";
+        		PreparedStatement allPoliticians_ps = conn.prepareStatement(allPoliticians_query);    
+        		allPoliticians_ps.setInt(1, politicianId);
+        		
+        		//Execute
+        		ResultSet allPoliticians_rs = allPoliticians_ps.executeQuery();
+        		while (allPoliticians_rs.next()) {
+        			String P_description = allPoliticians_rs.getString("description");
+            		String P_comment = allPoliticians_rs.getString("comment");
+            		String P_string = P_description + " " + P_comment;
+            		
+            		System.out.println(P_string);
+        		}
+        		
         		
             return result;
     		}
