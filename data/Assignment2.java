@@ -95,6 +95,7 @@ public class Assignment2 extends JDBCSubmission {
         		ElectionCabinetResult test_q3 = test.electionSequence("Franc");
         		
         		boolean test_disconnected = test.disconnectDB();
+        		System.out.println(test_q3);
         		
         		//test Strings
         		//System.out.println (test_connected);
