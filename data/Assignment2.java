@@ -50,6 +50,7 @@ public class Assignment2 extends JDBCSubmission {
     @Override
     public ElectionCabinetResult electionSequence(String countryName) {
         // Implement this method!
+    	
         return null;
     }
 
@@ -65,11 +66,20 @@ public class Assignment2 extends JDBCSubmission {
         		String url = "jdbc:postgresql://localhost:5432/csc343h-leetsz9";
         		
         		boolean test_connected = test.connectDB(url, "leetsz9", "");
+        		String search_path = "set search_path to parlgov";
+        		PreparedStatement ps = conn.prepareStatement(search_path);
+        		ResultSet rs = ps.executeQuery();
+        		
+        		while (rs.next()) {
+        			int countryid = rs.getInt(1); 
+        			System.out.println(countryid);
+        		}
+        		
         		boolean test_disconnected = test.disconnectDB();
         		
         		//test Strings
-        		System.out.println (test_connected);
-        		System.out.println(test_disconnected);
+        		//System.out.println (test_connected);
+        		//System.out.println(test_disconnected);
         		
     		}
     		catch (ClassNotFoundException e) {
