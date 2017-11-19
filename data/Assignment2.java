@@ -143,7 +143,7 @@ public class Assignment2 extends JDBCSubmission {
         		//Execute
         		ResultSet allPoliticians_rs = allPoliticians_ps.executeQuery();
         		while (allPoliticians_rs.next()) {
-        			Int politicianId = allPoliticians_rs.getInt("id");
+        			Integer pId = allPoliticians_rs.getInt("id");
         			String P_description = allPoliticians_rs.getString("description");
             		String P_comment = allPoliticians_rs.getString("comment");
             		String P_string = P_description + " " + P_comment;
@@ -152,7 +152,7 @@ public class Assignment2 extends JDBCSubmission {
             		System.out.println("The similarity score is: "+score);
             		
             		if (score > threshold) {
-            			result.add(politicianId);
+            			result.add(pId);
             		}
             		
         		}
