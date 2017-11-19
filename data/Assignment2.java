@@ -4,7 +4,7 @@ import java.util.List;
 // If you are looking for Java data structures, these are highly useful.
 // Remember that an important part of your mark is for doing as much in SQL (not Java) as you can.
 // Solutions that use only or mostly Java will not receive a high mark.
-//import java.util.ArrayList;
+import java.util.ArrayList;
 //import java.util.Map;
 //import java.util.HashMap;
 //import java.util.Set;
