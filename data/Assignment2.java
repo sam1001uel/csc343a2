@@ -56,6 +56,8 @@ public class Assignment2 extends JDBCSubmission {
     public ElectionCabinetResult electionSequence(String countryName) {
         // Implement this method!
     		ElectionCabinetResult result = new ElectionCabinetResult(new ArrayList<Integer>(), new ArrayList<Integer>());
+    		//ArrayList<Integer>() elections = new ArrayList<>();
+    		//ArrayList<Integer>() cabinets = new ArrayList<>();
     		try {
     			//get countryId according to countryName
     			
@@ -71,7 +73,8 @@ public class Assignment2 extends JDBCSubmission {
     			
         			System.out.println(countryId);
         		}
-            return null;
+        		
+            return result;
     		}
     		catch (SQLException se) {
     			System.err.println("SQL Exception." + "<Message>: " + se.getMessage());
