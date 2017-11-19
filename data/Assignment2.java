@@ -136,7 +136,7 @@ public class Assignment2 extends JDBCSubmission {
         		String allPoliticians_query = 
         				"select id, description, comment "+
         				"from politician_president "+
-        				"where id <> ?";
+        				"where id == ?";
         		PreparedStatement allPoliticians_ps = conn.prepareStatement(allPoliticians_query);    
         		allPoliticians_ps.setInt(1, politicianId);
         		
