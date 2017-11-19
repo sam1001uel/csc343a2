@@ -55,17 +55,23 @@ public class Assignment2 extends JDBCSubmission {
     @Override
     public ElectionCabinetResult electionSequence(String countryName) {
         // Implement this method!
-    	
-    		//get countryId according to countryName
-    		String getcountryId_query = "select id from country where name = " + countryName; 
-    		PreparedStatement getcountryId_ps = conn.prepareStatement(getcountryId_query);
-		ResultSet getcountryId_rs = getcountryId_ps.executeQuery();
-		while (getcountryId_rs.next()) {
-			int countryId = getcountryId_rs.getInt("id"); 
-			
-			System.out.println(countryId);
-		}
-        return null;
+    		try {
+    			//get countryId according to countryName
+        		String getcountryId_query = "select id from country where name = " + countryName; 
+        		PreparedStatement getcountryId_ps = conn.prepareStatement(getcountryId_query);
+        		ResultSet getcountryId_rs = getcountryId_ps.executeQuery();
+        		while (getcountryId_rs.next()) {
+        			int countryId = getcountryId_rs.getInt("id"); 
+    			
+        			System.out.println(countryId);
+        		}
+            return null;
+    		}
+    		catch (SQLException se) {
+    			System.err.println("SQL Exception." + "<Message>: " + se.getMessage());
+    			return null;
+        }     
+    		
     }
 
     @Override
