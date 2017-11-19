@@ -68,6 +68,7 @@ public class Assignment2 extends JDBCSubmission {
         		
         		//Result
         		ResultSet getcountryId_rs = getcountryId_ps.executeQuery();
+        		rs.next();
         		int countryId = getcountryId_rs.getInt("id");     			
         		System.out.println(countryId);	
         	        		
