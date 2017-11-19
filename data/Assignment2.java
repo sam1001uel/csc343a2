@@ -92,10 +92,12 @@ public class Assignment2 extends JDBCSubmission {
         		String url = "jdbc:postgresql://localhost:5432/csc343h-leetsz9";
         		
         		boolean test_connected = test.connectDB(url, "leetsz9", "");
-        		ElectionCabinetResult test_q3 = test.electionSequence("Franc");
+        		ElectionCabinetResult test_q3 = test.electionSequence("France");
+        		ElectionCabinetResult test_q3_wrongname = test.electionSequence("Franc");
         		
         		boolean test_disconnected = test.disconnectDB();
         		System.out.println(test_q3);
+        		System.out.println(test_q3_wrongname);
         		
         		//test Strings
         		//System.out.println (test_connected);
