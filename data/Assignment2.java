@@ -106,16 +106,7 @@ public class Assignment2 extends JDBCSubmission {
     		catch (SQLException se) {
     			System.err.println("SQL Exception." + "<Message>: " + se.getMessage());
     			return result;
-        }         	
-    		finally {
-    			close_ps(dropView_ps);
-    			close_ps(getcountryId_ps);
-    			close_ps(createView_ps);
-    			close_ps(answer_ps);
-    			
-    			close_rs(getcountryId_rs);
-    			close_rs(answer_rs);    			
-    		}
+        }         	    		
     }
 
     @Override
@@ -166,42 +157,9 @@ public class Assignment2 extends JDBCSubmission {
     		catch (SQLException se) {
     			System.err.println("SQL Exception." + "<Message>: " + se.getMessage());
     			return result;
-        }   
-    		finally {
-    			close_ps(givenPolitician_ps);
-    			close_ps(allPoliticians_ps);
-    			
-    			close_rs(givenPolitician_rs);
-    			close_rs(allPoliticians_rs);    			
-    		}
+        }      		
     }
-    
-    //helper function to close preparedstatement
-    public void close_ps (PreparedStatement ps) {
-    		if (ps != null) {
-    			try {
-    				ps.close();
-    			}
-    			catch (SQLException se) {
-        			System.err.println("SQL Exception." + "<Message>: " + se.getMessage());
-        			return result;
-            }   
-    		}
-    }
-    
-    //helper function to close ResultSet
-    public void close_rs (ResultSet rs) {
-    		if (rs != null) {
-			try {
-				rs.close();
-			}
-			catch (SQLException se) {
-    			System.err.println("SQL Exception." + "<Message>: " + se.getMessage());
-    			return result;
-			}   
-		}
-    }
-    
+            
     public static void main(String[] args) {
     		try {
     			Assignment2 test = new Assignment2();
