@@ -126,14 +126,26 @@ public class Assignment2 extends JDBCSubmission {
         		ElectionCabinetResult test_q3_wrongname = test.electionSequence("Franc");
         		
         		boolean test_disconnected = test.disconnectDB();
+        		
+        		//test q3
         		System.out.println(test_q3);
-        		System.out.println(test_q3.elections.length());
-        		System.out.println(test_q3.cabinets.length());
+        		
+        		int elections_length = 0;
+        		int cabinets_length = 0;
+        		
+        		for (i in test_q3.elections) {
+        			elections_length++;
+        		}
+        		
+        		for (i in test_q3.cabinets) {
+        			cabinets_length++;
+        		}
+        		System.out.println(elections_length);
+        		System.out.println(cabinets_length);
+        		
         		System.out.println(test_q3_wrongname);
         		
-        		//test Strings
-        		//System.out.println (test_connected);
-        		//System.out.println(test_disconnected);
+        		
         		
     		}
     		catch (ClassNotFoundException e) {
