@@ -34,7 +34,8 @@ public class Assignment2 extends JDBCSubmission {
     			ResultSet rs2 = ps2.executeQuery();
     			while (rs2.next()) {
     				int countryid = rs2.getInt(1); 
-    				System.out.println(countryid);
+    				int num = rs2.getInt(2);
+    				System.out.println(countryid + " " + num);
     			}
             return true;
     		}
