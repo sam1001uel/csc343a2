@@ -55,7 +55,7 @@ public class Assignment2 extends JDBCSubmission {
     @Override
     public ElectionCabinetResult electionSequence(String countryName) {
         // Implement this method!
-    		ElectionCabinetResult result = new ElectionCabinetResult(new ArrayList<integer>(), new ArrayList<integer>());
+    		ElectionCabinetResult result = new ElectionCabinetResult(new ArrayList<Integer>(), new ArrayList<Integer>());
     		try {
     			//get countryId according to countryName
     			
