@@ -76,12 +76,11 @@ public class Assignment2 extends JDBCSubmission {
         					"create view all_elections as "+
         					"select id as election_id, e_date as date , e_type "+
         					"from election "+
-        					"where country_id = ? "+
+        					"where country_id = "+ Integer.toString(countryId) + " " + 
         					"order by e_date desc";
         			
         			
-        			PreparedStatement createView_ps = conn.prepareStatement(createView_query);
-        			createView_ps.setInt(1, countryId);        		
+        			PreparedStatement createView_ps = conn.prepareStatement(createView_query);        		
         			//Execute create View all_elections query
         			createView_ps.execute();
         			System.out.println("View all_elections created!");
