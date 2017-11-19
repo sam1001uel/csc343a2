@@ -66,12 +66,37 @@ public class Assignment2 extends JDBCSubmission {
         		PreparedStatement getcountryId_ps = conn.prepareStatement(getcountryId_query);
         		getcountryId_ps.setString(1, countryName);
         		
-        		//Result
+        		//Execute getcountryId query
         		ResultSet getcountryId_rs = getcountryId_ps.executeQuery();
-        		getcountryId_rs.next();
-        		int countryId = getcountryId_rs.getInt("id");     			
-        		System.out.println(countryId);	
-        	        		
+        		while(getcountryId_rs.next()) {
+        			int countryId = getcountryId_rs.getInt("id"); 
+        			
+        			//Prepare Statement
+        			String createView_query = 
+        					"create view all_elections as "+
+        					"select id as election_id, e_date as date , e_type "+
+        					"from election "+
+        					"where country_id=? "+
+        					"order by e_date desc";
+        			
+        			
+        			PreparedStatement createView_ps = conn.prepareStatement(createView_query);
+        			createView_ps.setInt(1, countryId);        		
+        			//Execute create View all_elections query
+        			createView_ps.execute();
+        			
+        			//Prepare Statement
+        			PreparedStatement testView_ps = conn.prepareStatement("select * from all_elections");
+        			//Execute testView
+        			ResultSet testView_rs = testView_ps.executeQuery();
+        			while (testView_rs.next()) {
+        				int electionId = testView_rs.getInt("election_id");
+        				result.elections.add(electionId);
+        			}
+        				
+        		}
+        		    			
+        			        	    
             return result;
     		}
     		catch (SQLException se) {
