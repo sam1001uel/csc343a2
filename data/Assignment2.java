@@ -82,8 +82,7 @@ public class Assignment2 extends JDBCSubmission {
         			        			
         			PreparedStatement createView_ps = conn.prepareStatement(createView_query);        		
         			//Execute create View all_elections query
-        			createView_ps.execute();
-        			System.out.println("View all_elections created!");
+        			createView_ps.execute();       			
         			
         			//Prepare Statement
         			String answer_query = 
@@ -173,9 +172,9 @@ public class Assignment2 extends JDBCSubmission {
         		ElectionCabinetResult test_q3_Germany = test.electionSequence("Germany");
         		ElectionCabinetResult test_q3_wrongname = test.electionSequence("Franc");
         		
-        		//System.out.println(test_q3_Canada);
-        		//System.out.println(test_q3_Germany);      		
-        		//System.out.println(test_q3_wrongname);
+        		System.out.println(test_q3_Canada);
+        		System.out.println(test_q3_Germany);      		
+        		System.out.println(test_q3_wrongname);
         		
         		//test q4
         		List<Integer> test_q4 = test.findSimilarPoliticians(148, (float)0.0);
