@@ -99,6 +99,7 @@ public class Assignment2 extends JDBCSubmission {
         				int cabinetId = answer_rs.getInt("cabinet_id");
         				result.elections.add(electionId);
         				result.cabinets.add(cabinetId);
+        				        			
         			}    				
         		}        		    			        			        	    
             return result;
@@ -122,7 +123,8 @@ public class Assignment2 extends JDBCSubmission {
         		String url = "jdbc:postgresql://localhost:5432/csc343h-leetsz9";
         		
         		boolean test_connected = test.connectDB(url, "leetsz9", "");
-        		ElectionCabinetResult test_q3 = test.electionSequence("France");
+        		ElectionCabinetResult test_q3 = test.electionSequence("Canada");
+        		ElectionCabinetResult test_q3 = test.electionSequence("Germany");
         		ElectionCabinetResult test_q3_wrongname = test.electionSequence("Franc");
         		
         		boolean test_disconnected = test.disconnectDB();
@@ -130,18 +132,7 @@ public class Assignment2 extends JDBCSubmission {
         		//test q3
         		System.out.println(test_q3);
         		
-        		int elections_length = 0;
-        		int cabinets_length = 0;
         		
-        		for (int i in test_q3.elections) {
-        			elections_length++;
-        		}
-        		
-        		for (int i in test_q3.cabinets) {
-        			cabinets_length++;
-        		}
-        		System.out.println(elections_length);
-        		System.out.println(cabinets_length);
         		
         		System.out.println(test_q3_wrongname);
         		
