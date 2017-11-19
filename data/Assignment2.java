@@ -130,10 +130,8 @@ public class Assignment2 extends JDBCSubmission {
         		boolean test_disconnected = test.disconnectDB();
         		
         		//test q3
-        		System.out.println(test_q3);
-        		
-        		
-        		
+        		System.out.println(test_q3_Canada);
+        		System.out.println(test_q3_Germany);      		
         		System.out.println(test_q3_wrongname);
         		
         		
