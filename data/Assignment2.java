@@ -55,12 +55,9 @@ public class Assignment2 extends JDBCSubmission {
     @Override
     public ElectionCabinetResult electionSequence(String countryName) {
         // Implement this method!
-    		ElectionCabinetResult result = new ElectionCabinetResult(new ArrayList<Integer>(), new ArrayList<Integer>());
-    		//ArrayList<Integer>() elections = new ArrayList<>();
-    		//ArrayList<Integer>() cabinets = new ArrayList<>();
+    		ElectionCabinetResult result = new ElectionCabinetResult(new ArrayList<Integer>(), new ArrayList<Integer>());    		
     		try {
-    			//get countryId according to countryName
-    			
+    			//get countryId according to countryName    			
     			//Prepare Statement
         		String getcountryId_query = "select id from country where name = ?"; 
         		PreparedStatement getcountryId_ps = conn.prepareStatement(getcountryId_query);
@@ -70,7 +67,6 @@ public class Assignment2 extends JDBCSubmission {
         		ResultSet getcountryId_rs = getcountryId_ps.executeQuery();
         		while(getcountryId_rs.next()) {
         			int countryId = getcountryId_rs.getInt("id"); 
-        			System.out.println("the countryId is " + countryId);
         			//Prepare Statement
         			String createView_query = 
         					"create view all_elections as "+
@@ -86,17 +82,21 @@ public class Assignment2 extends JDBCSubmission {
         			System.out.println("View all_elections created!");
         			
         			//Prepare Statement
-        			PreparedStatement testView_ps = conn.prepareStatement("select * from all_elections");
-        			//Execute testView
-        			ResultSet testView_rs = testView_ps.executeQuery();
-        			while (testView_rs.next()) {
-        				int electionId = testView_rs.getInt("election_id");
+        			String answer_query = 
+        					"select all_elections.election_id, cabinet.id as cabinet_id, date, cabinet.start_date as cabinet_date "+
+        					"from all_elections join cabinet on all_elections.election_id=cabinet.election_id "+
+        					"order by date desc, cabinet_date desc ";
+        					
+        			PreparedStatement answer_ps = conn.prepareStatement(answer_query);
+        			//Execute Answer query
+        			ResultSet answer_rs = answer_ps.executeQuery();
+        			while (answer_rs.next()) {
+        				int electionId = answer_rs.getInt("election_id");
+        				int cabinetId = answer_rs.getInt("cabinet_id");
         				result.elections.add(electionId);
-        			}
-        				
-        		}
-        		    			
-        			        	    
+        				result.cabinets.add(cabinetId);
+        			}    				
+        		}        		    			        			        	    
             return result;
     		}
     		catch (SQLException se) {
