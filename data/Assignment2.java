@@ -30,13 +30,6 @@ public class Assignment2 extends JDBCSubmission {
     			PreparedStatement ps = conn.prepareStatement(search_path);
     			ps.executeUpdate();
     		
-    			PreparedStatement ps2 = conn.prepareStatement("select * from q7");
-    			ResultSet rs2 = ps2.executeQuery();
-    			while (rs2.next()) {
-    				int countryid = rs2.getInt(1); 
-    				int num = rs2.getInt(2);
-    				System.out.println(countryid + " " + num);
-    			}
             return true;
     		}
     		catch (SQLException se) {
@@ -63,6 +56,15 @@ public class Assignment2 extends JDBCSubmission {
     public ElectionCabinetResult electionSequence(String countryName) {
         // Implement this method!
     	
+    		//get countryId according to countryName
+    		String getcountryId_query = "select id from country where name = " + countryName; 
+    		PreparedStatement getcountryId_ps = conn.prepareStatement(getcountryId_query);
+		ResultSet getcountryId_rs = getcountryId_ps.executeQuery();
+		while (getcountryId_rs.next()) {
+			int countryId = getcountryId_rs.getInt(); 
+			
+			System.out.println(countryId);
+		}
         return null;
     }
 
@@ -78,7 +80,7 @@ public class Assignment2 extends JDBCSubmission {
         		String url = "jdbc:postgresql://localhost:5432/csc343h-leetsz9";
         		
         		boolean test_connected = test.connectDB(url, "leetsz9", "");
-        		
+        		test.electionSequence("France");
         		
         		boolean test_disconnected = test.disconnectDB();
         		
