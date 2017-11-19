@@ -79,8 +79,7 @@ public class Assignment2 extends JDBCSubmission {
         					"from election "+
         					"where country_id = "+ Integer.toString(countryId) + " " + 
         					"order by e_date desc";
-        			
-        			
+        			        			
         			PreparedStatement createView_ps = conn.prepareStatement(createView_query);        		
         			//Execute create View all_elections query
         			createView_ps.execute();
@@ -99,8 +98,7 @@ public class Assignment2 extends JDBCSubmission {
         				int electionId = answer_rs.getInt("election_id");
         				int cabinetId = answer_rs.getInt("cabinet_id");
         				result.elections.add(electionId);
-        				result.cabinets.add(cabinetId);
-        				        			
+        				result.cabinets.add(cabinetId);       				        			
         			}    				
         		}        		    			        			        	    
             return result;
@@ -108,8 +106,16 @@ public class Assignment2 extends JDBCSubmission {
     		catch (SQLException se) {
     			System.err.println("SQL Exception." + "<Message>: " + se.getMessage());
     			return result;
-        }     
-    		
+        }         	
+    		finally {
+    			close_ps(dropView_ps);
+    			close_ps(getcountryId_ps);
+    			close_ps(createView_ps);
+    			close_ps(answer_ps);
+    			
+    			close_rs(getcountryId_rs);
+    			close_rs(answer_rs);    			
+    		}
     }
 
     @Override
@@ -151,21 +157,51 @@ public class Assignment2 extends JDBCSubmission {
             		float score = (float)similarity(givenP_string, P_string);
             		System.out.println("The similarity score is: "+score);
             		
-            		if (score >= threshold) {
+            		if (score > threshold) {
             			result.add(pId);
-            		}
-            		
-        		}
-        		
-        		
+            		}        		
+        		}        		
             return result;
     		}
     		catch (SQLException se) {
     			System.err.println("SQL Exception." + "<Message>: " + se.getMessage());
     			return result;
         }   
+    		finally {
+    			close_ps(givenPolitician_ps);
+    			close_ps(allPoliticians_ps);
+    			
+    			close_rs(givenPolitician_rs);
+    			close_rs(allPoliticians_rs);    			
+    		}
     }
-
+    
+    //helper function to close preparedstatement
+    public void close_ps (PreparedStatement ps) {
+    		if (ps != null) {
+    			try {
+    				ps.close();
+    			}
+    			catch (SQLException se) {
+        			System.err.println("SQL Exception." + "<Message>: " + se.getMessage());
+        			return result;
+            }   
+    		}
+    }
+    
+    //helper function to close ResultSet
+    public void close_rs (ResultSet rs) {
+    		if (rs != null) {
+			try {
+				rs.close();
+			}
+			catch (SQLException se) {
+    			System.err.println("SQL Exception." + "<Message>: " + se.getMessage());
+    			return result;
+			}   
+		}
+    }
+    
     public static void main(String[] args) {
     		try {
     			Assignment2 test = new Assignment2();
@@ -175,9 +211,9 @@ public class Assignment2 extends JDBCSubmission {
         		boolean test_connected = test.connectDB(url, "leetsz9", "");
         		
         		//test q3
-        		//ElectionCabinetResult test_q3_Canada = test.electionSequence("Canada");
-        		//ElectionCabinetResult test_q3_Germany = test.electionSequence("Germany");
-        		//ElectionCabinetResult test_q3_wrongname = test.electionSequence("Franc");
+        		ElectionCabinetResult test_q3_Canada = test.electionSequence("Canada");
+        		ElectionCabinetResult test_q3_Germany = test.electionSequence("Germany");
+        		ElectionCabinetResult test_q3_wrongname = test.electionSequence("Franc");
         		
         		//System.out.println(test_q3_Canada);
         		//System.out.println(test_q3_Germany);      		
@@ -186,6 +222,7 @@ public class Assignment2 extends JDBCSubmission {
         		//test q4
         		List<Integer> test_q4 = test.findSimilarPoliticians(148, (float)0.0);
         		System.out.println(test_q4);
+        		
         		//test q2
         		boolean test_disconnected = test.disconnectDB();
         		
