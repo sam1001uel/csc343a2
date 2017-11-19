@@ -61,7 +61,7 @@ public class Assignment2 extends JDBCSubmission {
     		PreparedStatement getcountryId_ps = conn.prepareStatement(getcountryId_query);
 		ResultSet getcountryId_rs = getcountryId_ps.executeQuery();
 		while (getcountryId_rs.next()) {
-			int countryId = getcountryId_rs.getInt(); 
+			int countryId = getcountryId_rs.getInt("id"); 
 			
 			System.out.println(countryId);
 		}
