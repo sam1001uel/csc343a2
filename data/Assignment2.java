@@ -55,13 +55,14 @@ public class Assignment2 extends JDBCSubmission {
     @Override
     public ElectionCabinetResult electionSequence(String countryName) {
         // Implement this method!
+    		ElectionCabinetResult result = new ElectionCabinetResult(new ArrayList<integer>(), new ArrayList<integer>());
     		try {
     			//get countryId according to countryName
     			
     			//Prepare Statement
         		String getcountryId_query = "select id from country where name = ?"; 
         		PreparedStatement getcountryId_ps = conn.prepareStatement(getcountryId_query);
-        		getcountryId_ps.setString(1, "France");
+        		getcountryId_ps.setString(1, countryName);
         		
         		//Result
         		ResultSet getcountryId_rs = getcountryId_ps.executeQuery();
@@ -74,7 +75,7 @@ public class Assignment2 extends JDBCSubmission {
     		}
     		catch (SQLException se) {
     			System.err.println("SQL Exception." + "<Message>: " + se.getMessage());
-    			return null;
+    			return result;
         }     
     		
     }
@@ -91,7 +92,7 @@ public class Assignment2 extends JDBCSubmission {
         		String url = "jdbc:postgresql://localhost:5432/csc343h-leetsz9";
         		
         		boolean test_connected = test.connectDB(url, "leetsz9", "");
-        		test.electionSequence("France");
+        		ElectionCabinetResult test_q3 = test.electionSequence("Franc");
         		
         		boolean test_disconnected = test.disconnectDB();
         		
