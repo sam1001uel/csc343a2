@@ -136,7 +136,7 @@ public class Assignment2 extends JDBCSubmission {
         		String allPoliticians_query = 
         				"select id, description, comment "+
         				"from politician_president "+
-        				"where id = ?";
+        				"where id <> ?";
         		PreparedStatement allPoliticians_ps = conn.prepareStatement(allPoliticians_query);    
         		allPoliticians_ps.setInt(1, politicianId);
         		
@@ -184,8 +184,8 @@ public class Assignment2 extends JDBCSubmission {
         		//System.out.println(test_q3_wrongname);
         		
         		//test q4
-        		List<Integer> test_q4 = test.findSimilarPoliticians(148, (float)0.3);
-        		
+        		List<Integer> test_q4 = test.findSimilarPoliticians(148, (float)0.0);
+        		System.out.println(test_q4);
         		//test q2
         		boolean test_disconnected = test.disconnectDB();
         		
