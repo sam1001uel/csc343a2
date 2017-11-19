@@ -71,6 +71,7 @@ public class Assignment2 extends JDBCSubmission {
         		ResultSet getcountryId_rs = getcountryId_ps.executeQuery();
         		while(getcountryId_rs.next()) {
         			int countryId = getcountryId_rs.getInt("id"); 
+        			
         			//Prepare Statement
         			String createView_query = 
         					"create view all_elections as "+
@@ -112,9 +113,30 @@ public class Assignment2 extends JDBCSubmission {
     }
 
     @Override
-    public List<Integer> findSimilarPoliticians(Integer politicianName, Float threshold) {
+    public List<Integer> findSimilarPoliticians(Integer politicianId, Float threshold) {
         // Implement this method!
-        return null;
+    		List<Integer> result = new List<Integer>();
+    		try {
+    			//Get the comment and description of the given politicianId
+        		String givenPolitician_query = "select description, comment from politician_president where id = ?";
+        		PreparedStatement givenPolitician_ps = conn.prepareStatement(givenPolitician_query);    
+        		givenPolitician_ps.setInt(1, politicianId);
+        		
+        		//Execute get comment and description of given politician query
+        		ResultSet givenPolitician_rs = givenPolitician_ps.executeQuery();
+        		givenPolitician_rs.next();
+        		String givenP_description = givenPolitician_rs.getString("description");
+        		String givenP_comment = givenPolitician_rs.getString("comment");
+        		String givenP_string = givenP_description + " " + givenP_comment;
+        		
+        		System.out.println(givenP_string);
+        		
+            return result;
+    		}
+    		catch (SQLException se) {
+    			System.err.println("SQL Exception." + "<Message>: " + se.getMessage());
+    			return result;
+        }   
     }
 
     public static void main(String[] args) {
@@ -122,19 +144,23 @@ public class Assignment2 extends JDBCSubmission {
     			Assignment2 test = new Assignment2();
         		String url = "jdbc:postgresql://localhost:5432/csc343h-leetsz9";
         		
+        		//test q1
         		boolean test_connected = test.connectDB(url, "leetsz9", "");
-        		ElectionCabinetResult test_q3_Canada = test.electionSequence("Canada");
-        		ElectionCabinetResult test_q3_Germany = test.electionSequence("Germany");
-        		ElectionCabinetResult test_q3_wrongname = test.electionSequence("Franc");
-        		
-        		boolean test_disconnected = test.disconnectDB();
         		
         		//test q3
-        		System.out.println(test_q3_Canada);
-        		System.out.println(test_q3_Germany);      		
-        		System.out.println(test_q3_wrongname);
+        		//ElectionCabinetResult test_q3_Canada = test.electionSequence("Canada");
+        		//ElectionCabinetResult test_q3_Germany = test.electionSequence("Germany");
+        		//ElectionCabinetResult test_q3_wrongname = test.electionSequence("Franc");
         		
+        		//System.out.println(test_q3_Canada);
+        		//System.out.println(test_q3_Germany);      		
+        		//System.out.println(test_q3_wrongname);
         		
+        		//test q4
+        		List<Integer> test_q4 = test.findSimilarPoliticians(9, 0.3)
+        		
+        		//test q2
+        		boolean test_disconnected = test.disconnectDB();
         		
     		}
     		catch (ClassNotFoundException e) {
