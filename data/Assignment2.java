@@ -157,7 +157,7 @@ public class Assignment2 extends JDBCSubmission {
         		//System.out.println(test_q3_wrongname);
         		
         		//test q4
-        		List<Integer> test_q4 = test.findSimilarPoliticians(9, (float)0.3);
+        		List<Integer> test_q4 = test.findSimilarPoliticians(148, (float)0.3);
         		
         		//test q2
         		boolean test_disconnected = test.disconnectDB();
