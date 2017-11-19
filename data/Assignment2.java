@@ -123,8 +123,8 @@ public class Assignment2 extends JDBCSubmission {
         		String url = "jdbc:postgresql://localhost:5432/csc343h-leetsz9";
         		
         		boolean test_connected = test.connectDB(url, "leetsz9", "");
-        		ElectionCabinetResult test_q3 = test.electionSequence("Canada");
-        		ElectionCabinetResult test_q3 = test.electionSequence("Germany");
+        		ElectionCabinetResult test_q3_Canada = test.electionSequence("Canada");
+        		ElectionCabinetResult test_q3_Germany = test.electionSequence("Germany");
         		ElectionCabinetResult test_q3_wrongname = test.electionSequence("Franc");
         		
         		boolean test_disconnected = test.disconnectDB();
