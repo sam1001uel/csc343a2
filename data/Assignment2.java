@@ -28,7 +28,7 @@ public class Assignment2 extends JDBCSubmission {
             
             String search_path = "set search_path to parlgov";
     			PreparedStatement ps = conn.prepareStatement(search_path);
-    			ResultSet rs = ps.executeQuery();
+    			ps.executeQuery();
     		
     			PreparedStatement ps2 = conn.prepareStatement("select * from q7");
     			ResultSet rs2 = ps2.executeQuery();
