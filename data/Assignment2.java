@@ -30,8 +30,10 @@ public class Assignment2 extends JDBCSubmission {
     			PreparedStatement ps = conn.prepareStatement(search_path);
     			ResultSet rs = ps.executeQuery();
     		
-    			while (rs.next()) {
-    				int countryid = rs.getInt(1); 
+    			PreparedStatement ps2 = conn.prepareStatement("select * from q7");
+    			ResultSet rs2 = ps2.executeQuery();
+    			while (rs2.next()) {
+    				int countryid = rs2.getInt(1); 
     				System.out.println(countryid);
     			}
             return true;
